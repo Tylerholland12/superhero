@@ -30,7 +30,14 @@ class Hero():
         self.abilities = []
         self.armors = []
         self.current_health = starting_health
+    def add_ability(self, ability):
+        self.abilities.append("joust")
+        
 
 my_hero = Hero("Interdimensionoid", 200)
 print(my_hero.name)
 print(my_hero.current_health)
+ability = Ability("Great Debugging", 50)
+hero = Hero("Grace Hopper", 200)
+hero.add_ability(ability)
+print(hero.abilities)
