@@ -1,26 +1,36 @@
 import random
 
-
 class Ability():
     def __init__(self, name, max_damage):
         self.name = name
         self.max_damage = max_damage
     def attack(self):
-        return random.randint(1, 60)
+        return random.randint(0, self.max_damage)
     
-ability = Ability("Debugging Ability", 20)
+ability = Ability("Debugging Ability", 35)
 print(ability.name)
 print(ability.attack())
-        
 
-# class Armor():
-#     def __init__(self, name, max_block):
-#         self.name = name
-#         self.max_block = max_block
-#         pass
+class Armor():
+    def __init__(self, name, max_block):
+        self.name = name
+        self.max_block = max_block
+    def defend(self):
+        return random.randint(0, self.max_block)
+
+defense_ability = Armor("Shield", 34)
+print(defense_ability.name)
+print(defense_ability.defend())
+        
     
-# class Hero():
-#     def __init__(self, name, starting_health):
-#         self.name = name
-#         self.starting_health = starting_health
-#         pass
+class Hero():
+    def __init__(self, name, starting_health = 100):
+        self.name = name
+        self.starting_health = starting_health
+        self.abilities = []
+        self.armors = []
+        self.current_health = starting_health
+
+my_hero = Hero("Interdimensionoid", 200)
+print(my_hero.name)
+print(my_hero.current_health)
