@@ -1,4 +1,4 @@
-class Dog(object):
+class Dog():
     def __init__(self, name, breed, greeting):
         self.name = name
         self.breed = breed
@@ -14,3 +14,5 @@ from dog import dog
 
 my_dog = Dog("Bark", "labradoodle", "woah!")
 my_dog.bark()
+my_dog = list()
+my_dog.append(Dog("Bark", "labradoodle", "woah!"))
