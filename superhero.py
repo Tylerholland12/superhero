@@ -6,13 +6,6 @@ class Ability():
         self.max_damage = max_damage
     def attack(self):
         return random.randint(0, self.max_damage)
-    
-ability = Ability("Debugging Ability", 35)
-# print(ability.name)
-# print(ability.attack())
-another_ability = Ability("Smarty Pants", 50)
-# print(another_ability.name)
-# print(another_ability.attack)
 
 class Armor():
     def __init__(self, name, max_block):
@@ -21,26 +14,22 @@ class Armor():
     def defend(self):
         return random.randint(0, self.max_block)
 
-defense_ability = Armor("Shield", 34)
-# print(defense_ability.name)
-# print(defense_ability.defend())
-
 class Hero():
     def __init__(self, name, starting_health = 100):
         self.name = name
         self.starting_health = starting_health
         self.abilities = []
         self.armors = []
-        self.current_health = starting_health
+        self.current_health = self.starting_health
 
     def add_ability(self, ability):
-        # self.add_ability = []
-        self.abilities.append("decode")
-        self.abilities.append("code faster")
+        self.abilities.append(ability)
 
     def attack(self):
-        total_damage = self.starting_health - ability.attack() + defense_ability.defend()
-        return total_damage
+        total = 0
+        for force in self.abilities:
+            total += int(force.max_damage)
+        return total
 
     def add_armor(self, armor):
         self.armors.append(armor)
@@ -53,13 +42,58 @@ class Hero():
         return sum
 
     def take_damage(self, damage):
-        self.current_health = damage - defense_ability
+        call_defend = self.defend(damage)
+        self.current_health - call_defend
+        
+    def is_alive(self):
+        if self.current_health > 0:
+            return True
+        else:
+            return False
 
-my_hero = Hero("Interdimensionoid", 200)
-my_hero.add_ability(ability)
+    def fight(self, opponent):
 
-# print(my_hero.name)
+        while True:
+        
+            if self.is_alive():
+                damage = self.attack()
+                opponent.take_damage(damage)
+                print(opponent.name + " attacked " + self.name)
+            else:
+                print(self.name + " defeated " + opponent.name)
+                break
+            
+            if opponent.is_alive():
+                damage = opponent.attack()
+                self.take_damage(damage)
+                print(self.name + " attacked " + opponent.name)
+            else:
+                print(opponent.name + " defeated " + self.name)
+                
+        else:
+            return False
+
+       
+hero1 = Hero("Interdimensionoid")
+hero2 = Hero("Surfire")
+ability1 = Ability("Teleporting Kick", 300)
+ability2 = Ability("Interdimensional Sweep", 130)
+ability3 = Ability("Fire Wind", 80)
+ability4 = Ability("Wizard Beard", 20)
+hero1.add_ability(ability1)
+hero1.add_ability(ability2)
+hero2.add_ability(ability3)
+hero2.add_ability(ability4)
+hero1.fight(hero2)
+
+
+# my_hero = Hero("Interdimensionoid", 200)
+# my_hero.add_ability(ability)
+
+# # print(my_hero.name)
 # print(my_hero.current_health)
 
-my_hero.add_ability(another_ability)
-print(my_hero.attack())
+# my_hero.add_ability(another_ability)
+# # print(my_hero.attack())
+
+# print(my_hero.is_alive)
